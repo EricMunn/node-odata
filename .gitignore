@@ -1,0 +1,14 @@
+**/*.js
+**/*.js.map
+dist/**/*.js
+dist/**/*.d.ts
+dist/**/*.js.map
+node_modules/
+npm-debug.log
+typings/
+.tscache/
+*.tmp.txt
+launch.json
+.coverage/
+coverage/
+**/*.tgz

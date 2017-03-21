@@ -1,0 +1,53 @@
+{
+  "name": "batch-odata",
+  "version": "0.0.1",
+  "description": "Node services for odata",
+  "author": {
+    "name": "Eric Munn",
+    "email": "ericgmunn@gmail.com"
+  },
+  "main": "dist/batch-odata.js",
+  "types": "dist/batch-odata.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "typings": [
+    "dist/batch-odata.d.ts"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "clean:dev": "gulp clean-dev",
+    "compile": "tsc -p",
+    "precompile:dev": "npm run clean:dev",
+    "compile:dev": "npm run compile -- .",
+    "precompile:dist": "npm run clean -s",
+    "compile:dist": "npm run compile -- tsconfig.dist.json",
+    "dist": "npm run compile:dist",
+    "postdist": "npm --no-git-tag-version version patch && npm pack",
+    "postdistignoreignoreignore": "npm pack",
+    "pretest:watch": "npm run compile:dev",
+    "test": "istanbul cover node_modules/jasmine/bin/jasmine.js"
+  },
+  "license": "SEE LICENSE IN license.md",
+  "dependencies": {
+    "request": "^2.81.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.5.43",
+    "@types/nock": "^8.2.1",
+    "@types/node": "^7.0.8",
+    "@types/uuid": "^2.0.29",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "nock": "^9.0.9",
+    "rimraf": "^2.5.4",
+    "typescript": "^2.2.1"
+  }
+}
