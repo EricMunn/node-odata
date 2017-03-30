@@ -1,4 +1,3 @@
-///<reference path="./../node_modules/@types/node/index.d.ts"/>
 import { IODataBatch } from './IODataBatch';
 import { IODataBatchService} from "./IODataBatchService";
 import { OData3Changeset } from "./OData3Changeset";
