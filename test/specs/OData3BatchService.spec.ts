@@ -76,6 +76,47 @@ describe("Service: OData3BatchService", () => {
                 + "\r\n"
             expect(request.Body).toEqual(expected);
         });
+
+        it("should create an odata request with additional headers", () => {
+            let request = service.createRequest("GET", "RequestUrl",{"foo":"bar"},null,{"OptionalHeader1":"Foo","OptionalHeader2":"Bar"});
+            expect(request instanceof odata.OData3Request).toEqual(true);
+            let expected = "Content-Type: application/http\r\n"
+                + "Content-Transfer-Encoding:binary\r\n"
+                + "\r\n"
+                + "GET RequestUrl HTTP/1.1\r\n"
+                + "DataServiceVersion: 3.0;NetFx\r\n"
+                + "MaxDataServiceVersion: 3.0;NetFx\r\n"
+                + "Content-Type: application/json;odata=minimalmetadata\r\n"
+                + "Accept: application/json;odata=minimalmetadata\r\n"
+                + "Accept-Charset: UTF-8\r\n"
+                + "OptionalHeader1: Foo\r\n"
+                + "OptionalHeader2: Bar\r\n"
+                + "\r\n\r\n"
+                + "{\"foo\":\"bar\"}"
+                + "\r\n"
+            expect(request.Body).toEqual(expected);
+        });
+
+        it("should create an odata request with additional headers", () => {
+            let request = service.createRequest("GET", "RequestUrl",{"foo":"bar"},null);
+            request.addHeaders({"OptionalHeader1":"Foo","OptionalHeader2":"Bar"});
+            expect(request instanceof odata.OData3Request).toEqual(true);
+            let expected = "Content-Type: application/http\r\n"
+                + "Content-Transfer-Encoding:binary\r\n"
+                + "\r\n"
+                + "GET RequestUrl HTTP/1.1\r\n"
+                + "DataServiceVersion: 3.0;NetFx\r\n"
+                + "MaxDataServiceVersion: 3.0;NetFx\r\n"
+                + "Content-Type: application/json;odata=minimalmetadata\r\n"
+                + "Accept: application/json;odata=minimalmetadata\r\n"
+                + "Accept-Charset: UTF-8\r\n"
+                + "OptionalHeader1: Foo\r\n"
+                + "OptionalHeader2: Bar\r\n"
+                + "\r\n\r\n"
+                + "{\"foo\":\"bar\"}"
+                + "\r\n"
+            expect(request.Body).toEqual(expected);
+        });
     });
     
     describe("Function: createChangeset", () => {

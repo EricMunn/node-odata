@@ -1,17 +1,18 @@
 import { IODataBatch } from './IODataBatch';
 import { IODataRequest } from "./IODataRequest";
 import { IODataChangeset } from "./IODataChangeset";
+import { HttpHeaders } from "./batch-odata"
 
 export class OData3Batch implements IODataBatch {
     private _batchId: string;
     private _batchUrl: string;
     private _batchQueue:(IODataRequest|IODataChangeset)[]=[];
-    private _headers: Object;
+    private _headers: HttpHeaders;
     private _proxyUrl: string;
     private _proxyAllowInsecureCert:boolean;
 
     private _extend(target:Object, source:Object) {
-        for (var prop in source) {
+        for (let prop in source) {
             target[prop] = source[prop];
         }
 
@@ -34,7 +35,7 @@ export class OData3Batch implements IODataBatch {
         return this._batchUrl;
     }
 
-    get Headers():{} {
+    get Headers():HttpHeaders {
          return this._headers;
     }
 
@@ -70,8 +71,8 @@ export class OData3Batch implements IODataBatch {
         this._batchQueue.push(request);
     };
 
-    public addHeaders(headers:Object) {
-        this._headers = this._extend(this._headers, headers);
+    public addHeaders(headers:HttpHeaders) {
+        this._headers = <HttpHeaders>this._extend(this._headers, headers);
     }
 
     public getBatchRequest():{url:string,headers:{},body:string} {

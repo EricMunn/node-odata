@@ -10,3 +10,5 @@ export * from "./OData3BatchService";
 export * from "./OData3Changeset";
 export * from "./OData3Request";
 export * from "./OData3Response";
+
+export type HttpHeaders = {[name: string]: string}

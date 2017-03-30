@@ -30,6 +30,16 @@ createRequest(method:string,url:string,data:{},contentId:string)
 var request = service.createRequest("GET", "SomeEntity('EntityKey')", null, null);
 ```
 
+Create a request w/headers:
+```
+var request = service.createRequest("GET", "SomeEntity('EntityKey')", null, null,{"Prefer":"return-no-content"});
+```
+
+Add headers to an existing request:
+```
+request.addHeaders({"Prefer":"return-no-content"});
+```
+
 Add the request to the batch:
 ```
 batch.addRequest(request);

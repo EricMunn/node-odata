@@ -9,6 +9,7 @@ import { OData3Batch } from './OData3Batch';
 import * as url from 'url';
 import * as uuid from 'uuid';
 import * as nodeRequest from 'request';
+import { HttpHeaders } from "./batch-odata";
 
 
 export class OData3BatchService implements IODataBatchService {
@@ -32,8 +33,8 @@ export class OData3BatchService implements IODataBatchService {
         return x;
     }
 
-    public createRequest(method:string,url:string,data:{},contentId:string):OData3Request {
-        var x = new OData3Request(method,url,data,contentId);
+    public createRequest(method:string,url:string,data:{},contentId:string,headers:HttpHeaders):OData3Request {
+        var x = new OData3Request(method,url,data,contentId,headers);
         return x;
     }
 
